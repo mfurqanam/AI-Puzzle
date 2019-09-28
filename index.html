@@ -539,6 +539,19 @@
 					document.getElementsByTagName("button")[i].disabled = true;
 				}
 			}
+		function ChangeImage(){
+			//console.log(document.getElementById("image-file").value);
+			//document.getElementsByTagName("img").src = ""
+			var fReader = new FileReader();
+			fReader.readAsDataURL(document.getElementById("image-file").files[0]);
+			fReader.onloadend = function (event) {
+				var img = document.getElementsByTagName("img");
+				for(var i=0 ;i < img.length ; i++){
+					img[i].src = event.target.result;
+				}
+				//console.log(.path);
+			}
+		}
 	</script>
 	<script src="AI.js"></script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107567800-1"></script>
@@ -561,50 +574,51 @@
 		</h1>
 
 		<div id ="boardImage" style="">
-			<img style="width:100%;height: 100%;" src="angryBirds.jpg" />
+			<img style="width:100%;height: 100%;"  />
 		</div>
 
 		<div id="board" style="">
 
 			<div id="img1" class="boxSize box1">
-				<img class="topRowImages firstColImages" src="angryBirds.jpg" onclick="if(clickEvent)slide('img1'); else null" />
+				<img class="topRowImages firstColImages"  onclick="if(clickEvent)slide('img1'); else null" />
 			</div>
 			<div id="img2" class="boxSize box2 ">
-				<img class="topRowImages secondColImages" src="angryBirds.jpg" style="left: -100%;" onclick="if(clickEvent)slide('img2'); else null"
+				<img class="topRowImages secondColImages"  style="left: -100%;" onclick="if(clickEvent)slide('img2'); else null"
 				/>
 			</div>
 			<div id="img3" class="boxSize box3">
-				<img class="topRowImages thirdColImages" src="angryBirds.jpg" onclick="if(clickEvent)slide('img3'); else null" />
+				<img class="topRowImages thirdColImages"  onclick="if(clickEvent)slide('img3'); else null" />
 			</div>
 
 			<div id="img4" class="boxSize box4">
-				<img class="middileRowImages firstColImages" src="angryBirds.jpg " onclick="if(clickEvent)slide('img4'); else null" />
+				<img class="middileRowImages firstColImages"  onclick="if(clickEvent)slide('img4'); else null" />
 			</div>
 			<div id="img5" class="boxSize box5">
-				<img class="middileRowImages secondColImages" src="angryBirds.jpg" onclick="if(clickEvent)slide('img5'); else null" />
+				<img class="middileRowImages secondColImages"  onclick="if(clickEvent)slide('img5'); else null" />
 			</div>
 			<div id="img6" class="boxSize box6">
-				<img class="middileRowImages thirdColImages" src="angryBirds.jpg" onclick="if(clickEvent)slide('img6'); else null" />
+				<img class="middileRowImages thirdColImages"  onclick="if(clickEvent)slide('img6'); else null" />
 			</div>
 
 			<div id="img7" class="boxSize box7">
-				<img class="bottomRowImages firstColImages" src="angryBirds.jpg " onclick="if(clickEvent)slide('img7'); else null" />
+				<img class="bottomRowImages firstColImages"  onclick="if(clickEvent)slide('img7'); else null" />
 			</div>
 			<div id="img8" class="boxSize box8">
-				<img class="bottomRowImages secondColImages" src="angryBirds.jpg" onclick="if(clickEvent)slide('img8'); else null" />
+				<img class="bottomRowImages secondColImages"  onclick="if(clickEvent)slide('img8'); else null" />
 			</div>
 			<div id="img9" class="boxSize box9">
-				<img id="" class="bottomRowImages thirdColImages" src="angryBirds.jpg" onclick="if(clickEvent)slide('img9'); else null"
+				<img id="" class="bottomRowImages thirdColImages"  onclick="if(clickEvent)slide('img9'); else null"
 				/>
 			</div>
 			<!-- <div id="img10" class="boxSize box9">
-				<img class="bottomRowImages thirdColImages" src="angryBirds.jpg" />
+				<img class="bottomRowImages thirdColImages"  />
 			</div> -->
 		</div>
 
 		<textarea id="txtPS" class="form-control" readonly >
 		</textarea>
 		<div class="rdBtn">
+			<input type="file" id="image-file" onchange="ChangeImage()" multiple="false" class="btn btn-default  btn-block"/>
 			<button type="button" onclick="valueInitialize();Random();" class="btn btn-default  btn-block">Make Random</button>
 			<button type="button" onclick="clickEvent = false;btnDisable();Main();" class="btn btn-default  btn-block">Solve by Machine</button>
 			<button type="button" onclick="checkSteps=true;clickEvent = true;Main();" class="btn btn-default  btn-block">Check require Steps</button>
